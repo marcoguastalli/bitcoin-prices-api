@@ -1,0 +1,25 @@
+# ApplicationYmlConfig #
+web:
+  version: "v1"
+
+# server #
+server:
+  error:
+    path: /error
+  port: 8087
+  servlet:
+    contextPath: /bitcoin-prices-api
+
+# logger #
+logging:
+  level:
+    org:
+      springframework:
+        data: WARN
+        web: WARN
+    net:
+      marco27:
+        api: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

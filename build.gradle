@@ -6,7 +6,11 @@ plugins {
 
 group = 'net.marco27.api'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
+
+bootJar {
+	launchScript()
+}
 
 configurations {
 	compileOnly {
@@ -16,16 +20,24 @@ configurations {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	//implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	//lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
-	useJUnitPlatform()
+	useJUnitPlatform {
+		includeEngines "junit-jupiter"
+		excludeEngines "junit-vintage"
+	}
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
 }
