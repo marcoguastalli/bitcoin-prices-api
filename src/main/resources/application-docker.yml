@@ -19,7 +19,17 @@ logging:
         web: WARN
     net:
       marco27:
-        web: DEBUG
+        api: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+spring:
+  datasource:
+    url: jdbc:sqlite:data.db
+  jpa:
+    database-platform: org.sqlite.hibernate.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: create
+      naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+    show-sql: true

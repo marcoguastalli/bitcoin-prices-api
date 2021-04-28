@@ -24,11 +24,21 @@ repositories {
 }
 
 dependencies {
-	//implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	// apache commons
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+	//jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//sqlite
+	implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.34.0'
+	implementation group: 'com.github.gwenn', name: 'sqlite-dialect', version: '0.1.2'
+	//websocket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	//validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	//test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
