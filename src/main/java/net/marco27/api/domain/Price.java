@@ -34,7 +34,7 @@ public class Price implements Serializable {
     private Double amount;
 
     @JsonDeserialize(using = JsonDeserializeDate.class)
-    @Column(name = "date")
-    private Date date;
+    @Column(name = "created")
+    private Date created;
 
 }

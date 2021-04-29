@@ -58,7 +58,7 @@ public class BitcoinPricesController {
         final Price price = priceService.read(id);
         price.setCurrency(updatePrice.getCurrency());
         price.setAmount(updatePrice.getAmount());
-        price.setDate(updatePrice.getDate());
+        price.setCreated(updatePrice.getCreated());
         final Price result = priceService.update(price);
         return ResponseEntity.ok(result);
     }
