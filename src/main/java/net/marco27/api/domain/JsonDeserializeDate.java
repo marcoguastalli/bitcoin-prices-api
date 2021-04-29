@@ -15,10 +15,11 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 public class JsonDeserializeDate extends JsonDeserializer<Date> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonDeserializeDate.class);
-    private static final String[] PATTERNS = new String[]{"yyyy-MM-dd'T'HH:mm:ss.SSSX", "yyyy-MM-dd HH:mm:ss"};
+    private static final String[] PATTERNS = new String[] { "yyyy-MM-dd'T'HH:mm:ss.SSSX", "yyyy-MM-dd HH:mm:ss" };
 
     @Override
-    public Date deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Date deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext)
+            throws IOException, JsonProcessingException {
         try {
             final String dateAsString = jsonParser.getText().trim();
             final long time = DateUtils.parseDateStrictly(dateAsString, PATTERNS[0], PATTERNS[1]).getTime();
