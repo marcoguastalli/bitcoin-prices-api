@@ -17,6 +17,8 @@ public interface PriceService {
 
     List<Price> readByInstrument(String instrument);
 
+    List<Price> readBySourceAndInstrument(String source, String instrument);
+
     Price update(Price price);
 
     void delete(Price price);

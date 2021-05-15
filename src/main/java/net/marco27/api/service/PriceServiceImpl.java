@@ -41,8 +41,13 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public List<Price> readByInstrument(String instrument) {
+    public List<Price> readByInstrument(final String instrument) {
         return priceRepository.findByInstrument(instrument).orElse(Collections.emptyList());
+    }
+
+    @Override
+    public List<Price> readBySourceAndInstrument(final String source, final String instrument) {
+        return priceRepository.findBySourceAndInstrument(source, instrument).orElse(Collections.emptyList());
     }
 
     @Override

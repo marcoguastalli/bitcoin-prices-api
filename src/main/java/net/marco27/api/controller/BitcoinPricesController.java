@@ -65,6 +65,9 @@ public class BitcoinPricesController {
         if (!isEmpty(instrument)) {
             result = priceService.readByInstrument(instrument);
         }
+        if (!isEmpty(source) && !isEmpty(instrument)) {
+            result = priceService.readBySourceAndInstrument(source, instrument);
+        }
         return ResponseEntity.ok(result);
     }
 
