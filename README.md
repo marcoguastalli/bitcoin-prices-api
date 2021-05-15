@@ -31,7 +31,7 @@ curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read/all" -H "ac
 curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read/0" -H "accept: */*"
 curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read?source=TEST" -H "accept: */*"
 curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read?instrument=BTC_EUR" -H "accept: */*"
-curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read?source=TESTinstrument=BTC_EUR" -H "accept: */*"
+curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read?source=TEST&instrument=BTC_EUR" -H "accept: */*"
 
 ### Update
 curl -iX PUT "http://localhost:8087/bitcoin-prices-api/v1/price/update/0" -H "accept: */*" -H "Content-Type: application/json" -d "{
