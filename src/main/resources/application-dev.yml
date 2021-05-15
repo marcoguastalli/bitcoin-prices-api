@@ -1,5 +1,5 @@
-# ApplicationYmlConfig #
-web:
+# ApiConfig for dev environment #
+api:
   version: "v1"
 
 # server #
@@ -30,7 +30,7 @@ spring:
   jpa:
     database-platform: org.sqlite.hibernate.dialect.SQLiteDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
       naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
     show-sql: true
 # create – Hibernate first drops existing tables, then creates new tables

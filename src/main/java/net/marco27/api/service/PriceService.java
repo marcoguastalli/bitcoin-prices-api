@@ -13,7 +13,12 @@ public interface PriceService {
 
     List<Price> readAll();
 
+    List<Price> readBySource(String source);
+
+    List<Price> readByInstrument(String instrument);
+
     Price update(Price price);
 
     void delete(Price price);
+
 }

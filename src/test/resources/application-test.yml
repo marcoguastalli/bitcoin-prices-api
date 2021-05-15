@@ -1,2 +1,2 @@
-# ApplicationYmlConfig #
-web.version: "v1"
+# ApiConfig for test #
+api.version: "v1"

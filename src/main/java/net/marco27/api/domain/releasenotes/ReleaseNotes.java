@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
-import net.marco27.api.config.ApplicationYmlConfig;
+import net.marco27.api.config.ApiConfig;
 
 @Data
 public class ReleaseNotes {
@@ -23,8 +23,8 @@ public class ReleaseNotes {
     private final LocalDateTime lastUpdate = VERSION_1_DATE;
 
     @Autowired
-    public ReleaseNotes(final ApplicationYmlConfig applicationYmlConfig) {
-        this.version = applicationYmlConfig.getVersion();
+    public ReleaseNotes(final ApiConfig apiConfig) {
+        this.version = apiConfig.getVersion();
     }
 
     public static final LocalDateTime VERSION_1_DATE = LocalDate.parse("2012-04-22").atTime(LocalTime.parse("23:22:13"));

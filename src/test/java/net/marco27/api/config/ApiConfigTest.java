@@ -11,17 +11,17 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@EnableConfigurationProperties(value = ApplicationYmlConfig.class)
+@EnableConfigurationProperties(value = ApiConfig.class)
 @TestPropertySource("classpath:application-test.yml")
-public class ApplicationYmlConfigTest {
+public class ApiConfigTest {
 
     @Autowired
-    private ApplicationYmlConfig applicationYmlConfig;
+    private ApiConfig apiConfig;
 
     @Test
     public void testGetVersion() {
-        assertNotNull(applicationYmlConfig);
-        assertEquals("\"v1\"", applicationYmlConfig.getVersion());
+        assertNotNull(apiConfig);
+        assertEquals("\"v1\"", apiConfig.getVersion());
     }
 
 }

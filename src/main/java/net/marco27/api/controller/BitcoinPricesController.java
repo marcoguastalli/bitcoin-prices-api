@@ -1,7 +1,9 @@
 package net.marco27.api.controller;
 
 import static net.marco27.api.domain.releasenotes.ReleaseNotes.VERSION_1;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.marco27.api.domain.Price;
@@ -52,11 +55,25 @@ public class BitcoinPricesController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/read")
+    public ResponseEntity<List<Price>> readBy(@RequestParam(required = false) final String source,
+            @RequestParam(required = false) final String instrument) {
+        List<Price> result = Collections.emptyList();
+        if (!isEmpty(source)) {
+            result = priceService.readBySource(source);
+        }
+        if (!isEmpty(instrument)) {
+            result = priceService.readByInstrument(instrument);
+        }
+        return ResponseEntity.ok(result);
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<Price> update(@PathVariable(value = "id") final long id,
             @Valid @RequestBody final Price updatePrice) throws DocumentNotFoundException {
         final Price price = priceService.read(id);
-        price.setCurrency(updatePrice.getCurrency());
+        price.setSource(updatePrice.getSource());
+        price.setInstrument(updatePrice.getInstrument());
         price.setAmount(updatePrice.getAmount());
         price.setCreated(updatePrice.getCreated());
         final Price result = priceService.update(price);
@@ -65,8 +82,8 @@ public class BitcoinPricesController {
 
     @DeleteMapping("/delete/{id}")
     public Map<Long, Boolean> delete(@PathVariable(value = "id") final long id) throws DocumentNotFoundException {
-        final Price bookmarks = priceService.read(id);
-        priceService.delete(bookmarks);
+        final Price price = priceService.read(id);
+        priceService.delete(price);
         Map<Long, Boolean> response = new HashMap<>();
         response.put(id, Boolean.TRUE);
         return response;

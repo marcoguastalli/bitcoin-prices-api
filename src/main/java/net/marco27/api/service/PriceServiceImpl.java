@@ -1,5 +1,6 @@
 package net.marco27.api.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -35,12 +36,23 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
+    public List<Price> readBySource(final String source) {
+        return priceRepository.findBySource(source).orElse(Collections.emptyList());
+    }
+
+    @Override
+    public List<Price> readByInstrument(String instrument) {
+        return priceRepository.findByInstrument(instrument).orElse(Collections.emptyList());
+    }
+
+    @Override
     public Price update(final Price price) {
         return priceRepository.save(price);
     }
 
     @Override
     public void delete(final Price price) {
-        priceRepository.delete(price);
+        priceRepository.deleteById(price.getId());
     }
+
 }

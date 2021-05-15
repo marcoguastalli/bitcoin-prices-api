@@ -1,5 +1,5 @@
-# ApplicationYmlConfig #
-web:
+# ApiConfig for docker environment #
+api:
   version: "v1"
 
 # server #

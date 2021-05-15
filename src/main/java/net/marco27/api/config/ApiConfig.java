@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 @Configuration
-@ConfigurationProperties("web")
-public class ApplicationYmlConfig {
+@ConfigurationProperties("api")
+public class ApiConfig {
 
     private String version;
 }

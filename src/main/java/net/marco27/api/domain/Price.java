@@ -1,16 +1,11 @@
 package net.marco27.api.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,21 +15,23 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "price")
+@Table(name = "prices")
 public class Price implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private long id;
 
-    @Column(name = "currency", nullable = false, length = 10)
-    private String currency;
+    @Column(name = "source", nullable = false)
+    private String source;
+
+    @Column(name = "instrument", nullable = false)
+    private String instrument;
 
     @Column(name = "amount", nullable = false)
     private Double amount;
 
-    @JsonDeserialize(using = JsonDeserializeDate.class)
     @Column(name = "created")
-    private Date created;
+    private String created;
 
 }

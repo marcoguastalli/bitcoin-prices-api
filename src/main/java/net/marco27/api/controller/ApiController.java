@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.marco27.api.config.ApplicationYmlConfig;
+import net.marco27.api.config.ApiConfig;
 import net.marco27.api.domain.releasenotes.ReleaseNotes;
 
 @RestController
@@ -19,17 +19,17 @@ public class ApiController {
 
     private static final Logger log = LoggerFactory.getLogger(ApiController.class);
 
-    private final ApplicationYmlConfig applicationYmlConfig;
+    private final ApiConfig apiConfig;
 
     @Autowired
-    public ApiController(final ApplicationYmlConfig applicationYmlConfig) {
-        this.applicationYmlConfig = applicationYmlConfig;
+    public ApiController(final ApiConfig apiConfig) {
+        this.apiConfig = apiConfig;
     }
 
     @GetMapping("/releasenotes")
     public ResponseEntity<ReleaseNotes> releaseNotes() {
-        final ReleaseNotes result = new ReleaseNotes(applicationYmlConfig);
-        log.debug("ReleaseNotes: {}", applicationYmlConfig.getVersion());
+        final ReleaseNotes result = new ReleaseNotes(apiConfig);
+        log.debug("ReleaseNotes: {}", apiConfig.getVersion());
         return ResponseEntity.ok(result);
     }
 }
