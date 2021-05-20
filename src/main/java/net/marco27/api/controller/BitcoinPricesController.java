@@ -4,16 +4,13 @@ import static net.marco27.api.domain.releasenotes.ReleaseNotes.VERSION_1;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,19 +74,13 @@ public class BitcoinPricesController {
         final Price price = priceService.read(id);
         price.setSource(updatePrice.getSource());
         price.setInstrument(updatePrice.getInstrument());
-        price.setAmount(updatePrice.getAmount());
+        price.setPriceFrom(updatePrice.getPriceFrom());
+        price.setPriceTo(updatePrice.getPriceTo());
+        price.setVariation(updatePrice.getVariation());
         price.setCreated(updatePrice.getCreated());
+        price.setUpdated(updatePrice.getUpdated());
         final Price result = priceService.update(price);
         return ResponseEntity.ok(result);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public Map<Long, Boolean> delete(@PathVariable(value = "id") final long id) throws DocumentNotFoundException {
-        final Price price = priceService.read(id);
-        priceService.delete(price);
-        Map<Long, Boolean> response = new HashMap<>();
-        response.put(id, Boolean.TRUE);
-        return response;
     }
 
 }

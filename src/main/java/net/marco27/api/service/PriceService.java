@@ -21,6 +21,4 @@ public interface PriceService {
 
     Price update(Price price);
 
-    void delete(Price price);
-
 }

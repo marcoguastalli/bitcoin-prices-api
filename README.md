@@ -23,8 +23,11 @@ curl -iX POST "http://localhost:8087/bitcoin-prices-api/v1/price/create" -H "acc
 \"id\": 0,
 \"source\": \"TEST\",
 \"instrument\": \"BTC_EUR\",
-\"amount\": 50000,
-\"created\": \"2021-05-15T11:19:00.000Z\" }"
+\"priceFrom\": 1,
+\"priceTo\": 2,
+\"variation\": 100,
+\"created\": \"2021-05-15T11:19:00.000Z\",
+\"updated\": \"2021-05-20T11:19:00.000Z\" }"
 
 ### Read
 curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read/all" -H "accept: */*"
@@ -36,9 +39,12 @@ curl -iX GET "http://localhost:8087/bitcoin-prices-api/v1/price/read?source=TEST
 ### Update
 curl -iX PUT "http://localhost:8087/bitcoin-prices-api/v1/price/update/0" -H "accept: */*" -H "Content-Type: application/json" -d "{
 \"source\": \"TEST\",
-\"instrument\": \"BTC_USD\",
-\"amount\": 60000,
-\"created\": \"2021-05-15T11:20:00.000Z\" }"
+\"instrument\": \"BTC_EUR\",
+\"priceFrom\": 1,
+\"priceTo\": 1.5,
+\"variation\": 50,
+\"created\": \"2021-05-15T11:19:00.000Z\",
+\"updated\": \"2021-05-20T11:19:00.000Z\" }"
 
 ### Delete
 curl -X DELETE "http://localhost:8087/bitcoin-prices-api/v1/price/delete/0" -H "accept: */*"

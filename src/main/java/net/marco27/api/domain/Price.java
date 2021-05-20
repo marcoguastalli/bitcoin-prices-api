@@ -28,10 +28,19 @@ public class Price implements Serializable {
     @Column(name = "instrument", nullable = false)
     private String instrument;
 
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @Column(name = "price_from", nullable = false)
+    private Double priceFrom;
+
+    @Column(name = "price_to", nullable = false)
+    private Double priceTo;
+
+    @Column(name = "variation", nullable = false)
+    private Double variation;
 
     @Column(name = "created")
     private String created;
+
+    @Column(name = "updated")
+    private String updated;
 
 }

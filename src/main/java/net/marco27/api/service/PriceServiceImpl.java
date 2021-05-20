@@ -55,9 +55,4 @@ public class PriceServiceImpl implements PriceService {
         return priceRepository.save(price);
     }
 
-    @Override
-    public void delete(final Price price) {
-        priceRepository.deleteById(price.getId());
-    }
-
 }
