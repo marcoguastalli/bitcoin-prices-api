@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.marco27.api.domain.Price;
@@ -16,7 +17,8 @@ public class PriceServiceImpl implements PriceService {
 
     private final PriceRepository priceRepository;
 
-    public PriceServiceImpl(PriceRepository priceRepository) {
+    @Autowired
+    public PriceServiceImpl(final PriceRepository priceRepository) {
         this.priceRepository = priceRepository;
     }
 

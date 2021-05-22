@@ -16,4 +16,8 @@ public interface PriceRepository extends CrudRepository<Price, Long> {
     Optional<List<Price>> findByInstrument(String instrument);
 
     Optional<List<Price>> findBySourceAndInstrument(String source, String instrument);
+
+    Iterable<Price> findAllByOrderByVariationAsc();
+
+    Iterable<Price> findAllByOrderByVariationDesc();
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.marco27.api.domain.Price;
 import net.marco27.api.exception.DocumentNotFoundException;
+import net.marco27.api.scheduler.PriceScheduler;
 import net.marco27.api.service.PriceService;
 
 @RestController
@@ -29,10 +30,12 @@ import net.marco27.api.service.PriceService;
 public class BitcoinPricesController {
 
     private final PriceService priceService;
+    private final PriceScheduler priceScheduler;
 
     @Autowired
-    public BitcoinPricesController(final PriceService priceService) {
+    public BitcoinPricesController(final PriceService priceService, final PriceScheduler priceScheduler) {
         this.priceService = priceService;
+        this.priceScheduler = priceScheduler;
     }
 
     @PostMapping("/create")
@@ -80,6 +83,18 @@ public class BitcoinPricesController {
         price.setCreated(updatePrice.getCreated());
         price.setUpdated(updatePrice.getUpdated());
         final Price result = priceService.update(price);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/variations/asc")
+    public ResponseEntity<List<Price>> readPricesVariationsAscending() {
+        final List<Price> result = priceScheduler.readPricesVariationsAscending();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/variations/desc")
+    public ResponseEntity<List<Price>> readPricesVariationsDescending() {
+        final List<Price> result = priceScheduler.readPricesVariationsDescending();
         return ResponseEntity.ok(result);
     }
 
