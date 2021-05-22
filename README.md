@@ -50,3 +50,7 @@ curl -iX PUT "http://localhost:8087/bitcoin-prices-api/v1/price/update/0" -H "ac
 
 ### Delete
 curl -X DELETE "http://localhost:8087/bitcoin-prices-api/v1/price/delete/0" -H "accept: */*"
+
+
+### WebSockets
+http://localhost:8087/bitcoin-prices-api/websockets.html
